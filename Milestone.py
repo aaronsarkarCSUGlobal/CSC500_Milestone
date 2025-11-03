@@ -216,20 +216,34 @@ def print_menu(cart):
             # option was invalid so tell user to pick a new one
             option = input("Choose a valid option: \n")
         
+        # Step 7, 8 & 9
+        # Implement add item to cart menu option
+        # Implement remove item menu option
+        # Implement change item quantity menu option 
         # option to add item to cart
         if option == 'a':
-            print("Item added!")
-            # not implemented yet
+            print("ADD ITEM TO CART") # print statement from instructions
+            name = input("Enter the item name:\n") # ask user to enter the items name
+            description = input("Enter the item description:\n") # ask user to enter the items description
+            price = float(input("Enter the item price:\n")) # ask user to enter the items price
+            quantity = int(input("Enter the item quantity:\n")) # ask user to enter the items quantity
+            item = ItemToPurchase(name, price, quantity, description) # create an instance with the user inputs
+            cart.add_item(item) # add the new item to the cart
+            print("Item added to cart!") # print to let the user know item added to cart       
         
         # option to remove item from cart
         elif option == 'r': # option was r
-            print("Item removed")
-            # not implemented yet
+            print("REMOVE ITEM FROM CART") # print statement from instructions
+            name = input("Enter name of item to remove:\n") # ask the user for the name of the item
+            cart.remove_item(name) # remove the item from the cart
         
         # option to change item quantity
         elif option == 'c': # option was c
-            print("Item quantity changed")
-            # not implemented yet
+            print("CHANGE ITEM QUANTITY")
+            name = input("Enter name of item:\n") # ask the user for the name of the item
+            quantity = int(input("Enter the new item quantity:\n")) # ask user to enter the new items quantity
+            modified_item = ItemToPurchase(item_name=name, item_quantity=quantity) # create new instance with new quantity
+            cart.modify_item(modified_item) # call modify item function to modify the cart item's quantity
         
         # output item descriptions
         elif option == "i": # option was i
@@ -249,13 +263,14 @@ def print_menu(cart):
 # simple main section to test the functionality of my code
 if __name__ == "__main__":
     # ask user for two inputs: name and date
-    customer_name = input("Enter customer's name: \n")
-    current_date = input("Enter the current date: \n")
+    # Ask the user for customer for name and today's date
+    customer_name = input("Enter customer's name: \n") #input for customer's name
+    current_date = input("Enter the current date: \n") # input for current date 
     print(f"\nCustomers name: {customer_name}")
     print(f"\nToday's date: {current_date}")
 
     # create a shopping cart with user name and date
-    cart = ShoppingCart(customer_name, current_date)
+    cart = ShoppingCart(customer_name, current_date) # Object created for Step 7
 
     # test the menu 
     print_menu(cart)
